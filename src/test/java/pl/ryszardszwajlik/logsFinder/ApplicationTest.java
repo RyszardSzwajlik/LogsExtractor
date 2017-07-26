@@ -1,4 +1,4 @@
-package pl.ryszardszwajlik.artigo;
+package pl.ryszardszwajlik.logsFinder;
 
 import org.junit.Before;
 import org.junit.Test;

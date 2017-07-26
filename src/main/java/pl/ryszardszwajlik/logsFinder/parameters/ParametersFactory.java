@@ -1,7 +1,7 @@
-package pl.ryszardszwajlik.artigo.parameters;
+package pl.ryszardszwajlik.logsFinder.parameters;
 
-import static pl.ryszardszwajlik.artigo.parameters.ParameterTypes.FILENAME;
-import static pl.ryszardszwajlik.artigo.parameters.ParameterTypes.TIME;
+import static pl.ryszardszwajlik.logsFinder.parameters.ParameterTypes.FILENAME;
+import static pl.ryszardszwajlik.logsFinder.parameters.ParameterTypes.TIME;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

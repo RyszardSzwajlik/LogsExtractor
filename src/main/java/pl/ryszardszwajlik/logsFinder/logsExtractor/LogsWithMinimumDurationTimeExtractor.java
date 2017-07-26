@@ -1,6 +1,6 @@
-package pl.ryszardszwajlik.artigo.logsExtractor;
+package pl.ryszardszwajlik.logsFinder.logsExtractor;
 
-import pl.ryszardszwajlik.artigo.parameters.Parameters;
+import pl.ryszardszwajlik.logsFinder.parameters.Parameters;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -1,4 +1,4 @@
-package pl.ryszardszwajlik.artigo.logsWriter;
+package pl.ryszardszwajlik.logsFinder.logsWriter;
 
 import org.springframework.stereotype.Component;
 

@@ -1,8 +1,8 @@
-package pl.ryszardszwajlik.artigo.logsExtractor;
+package pl.ryszardszwajlik.logsFinder.logsExtractor;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-import pl.ryszardszwajlik.artigo.parameters.Parameters;
+import pl.ryszardszwajlik.logsFinder.parameters.Parameters;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,6 +14,7 @@ import java.util.Queue;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.mockito.Mockito.when;
+import static pl.ryszardszwajlik.logsFinder.logsExtractor.LogsWithMinimumDurationTimeExtractor.EXIT_MESSAGE;
 
 public class LogsWithMinimumDurationTimeExtractorTest
 {
@@ -36,10 +37,10 @@ public class LogsWithMinimumDurationTimeExtractorTest
         new LogsWithMinimumDurationTimeExtractor(parameters, queue).call();
 
         // then
-        assertThat(queue).hasSize(2);
+        assertThat(queue).hasSize(3);
         for (String selectedLine : queue)
         {
-            assertThat(selectedLine.contains("1s") || selectedLine.contains("2s")).isTrue();
+            assertThat(selectedLine.contains("1s") || selectedLine.contains("2s") || selectedLine.equals(EXIT_MESSAGE)).isTrue();
         }
     }
 
@@ -60,7 +61,8 @@ public class LogsWithMinimumDurationTimeExtractorTest
         new LogsWithMinimumDurationTimeExtractor(parameters, queue).call();
 
         // then
-        assertThat(queue).hasSize(0);
+        assertThat(queue).hasSize(1);
+        assertThat(queue.peek()).isEqualTo(EXIT_MESSAGE);
     }
 
     private File createTemporaryFileWithData(String... serviceLogLines) throws IOException

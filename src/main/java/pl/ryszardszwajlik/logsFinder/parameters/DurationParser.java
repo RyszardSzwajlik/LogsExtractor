@@ -1,4 +1,4 @@
-package pl.ryszardszwajlik.artigo.parameters;
+package pl.ryszardszwajlik.logsFinder.parameters;
 
 import org.springframework.stereotype.Component;
 import java.security.InvalidParameterException;

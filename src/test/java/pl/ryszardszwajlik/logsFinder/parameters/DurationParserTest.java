@@ -1,4 +1,4 @@
-package pl.ryszardszwajlik.artigo.parameters;
+package pl.ryszardszwajlik.logsFinder.parameters;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;

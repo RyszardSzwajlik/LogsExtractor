@@ -1,12 +1,12 @@
-package pl.ryszardszwajlik.artigo;
+package pl.ryszardszwajlik.logsFinder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
-import pl.ryszardszwajlik.artigo.logsExtractor.LogsWithMinimumDurationTimeExtractor;
-import pl.ryszardszwajlik.artigo.logsWriter.LogsWriter;
-import pl.ryszardszwajlik.artigo.parameters.Parameters;
-import pl.ryszardszwajlik.artigo.parameters.ParametersFactory;
+import pl.ryszardszwajlik.logsFinder.logsExtractor.LogsWithMinimumDurationTimeExtractor;
+import pl.ryszardszwajlik.logsFinder.logsWriter.LogsWriter;
+import pl.ryszardszwajlik.logsFinder.parameters.Parameters;
+import pl.ryszardszwajlik.logsFinder.parameters.ParametersFactory;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -15,7 +15,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Logger;
 
 import static java.util.Arrays.asList;
-import static pl.ryszardszwajlik.artigo.logsExtractor.LogsWithMinimumDurationTimeExtractor.EXIT_MESSAGE;
+import static pl.ryszardszwajlik.logsFinder.logsExtractor.LogsWithMinimumDurationTimeExtractor.EXIT_MESSAGE;
 
 @Component
 public class Application
