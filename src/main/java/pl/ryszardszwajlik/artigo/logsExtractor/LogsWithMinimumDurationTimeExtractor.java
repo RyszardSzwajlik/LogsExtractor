@@ -32,7 +32,7 @@ public class LogsWithMinimumDurationTimeExtractor implements Callable<Void>
     }
 
     @Override
-    public Void call() throws IOException
+    public Void call()
     {
         try (Stream<String> stream = Files.lines(Paths.get(parameters.getFileName())))
         {
@@ -40,7 +40,14 @@ public class LogsWithMinimumDurationTimeExtractor implements Callable<Void>
                     .filter(this::hasMinimumDurationTime)
                     .forEach(queue::offer);
         }
-        queue.offer(EXIT_MESSAGE);
+        catch (IOException e)
+        {
+            System.out.println("Could not load file: " + parameters.getFileName());
+        }
+        finally
+        {
+            queue.offer(EXIT_MESSAGE);
+        }
         return null;
     }
 

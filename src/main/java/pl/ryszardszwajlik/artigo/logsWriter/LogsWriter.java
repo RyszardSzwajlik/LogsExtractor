@@ -9,7 +9,8 @@ public class LogsWriter
 {
     public void logUntilPoisonPill(BlockingQueue<String> queue, String poisonPill) throws InterruptedException
     {
-        for (String line = ""; !line.equals(poisonPill); line = queue.take())
+        String line;
+        while (!(line = queue.take()).equals(poisonPill))
         {
             System.out.println(line);
         }
