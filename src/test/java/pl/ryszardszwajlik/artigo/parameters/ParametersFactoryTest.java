@@ -76,6 +76,6 @@ public class ParametersFactoryTest
 
         // then
         assertThat(parameters.getFileName()).isEqualTo(expectedFileName);
-        assertThat(parameters.getMinimalTime()).isEqualTo(duration);
+        assertThat(parameters.getMinimalDurationTime()).isEqualTo(duration);
     }
 }

@@ -5,12 +5,12 @@ import java.time.Duration;
 public class Parameters
 {
     private final String fileName;
-    private final Duration minimalTime;
+    private final Duration minimalDurationTime;
 
-    Parameters(String fileName, Duration minimalTime)
+    Parameters(String fileName, Duration minimalDurationTime)
     {
         this.fileName = fileName;
-        this.minimalTime = minimalTime;
+        this.minimalDurationTime = minimalDurationTime;
     }
 
     public String getFileName()
@@ -18,8 +18,8 @@ public class Parameters
         return fileName;
     }
 
-    public Duration getMinimalTime()
+    public Duration getMinimalDurationTime()
     {
-        return minimalTime;
+        return minimalDurationTime;
     }
 }
