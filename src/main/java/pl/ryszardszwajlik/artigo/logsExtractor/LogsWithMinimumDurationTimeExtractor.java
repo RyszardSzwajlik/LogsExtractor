@@ -16,6 +16,8 @@ import java.util.stream.Stream;
 
 public class LogsWithMinimumDurationTimeExtractor implements Callable<Void>
 {
+    public static final String EXIT_MESSAGE = "LogsFinderExitMessage" + System.currentTimeMillis();
+
     private static final String ANY_ISO_DATE_CHARACTERS = "((\\d|-|T|:|\\.)*)";
     private static final Pattern startTimePattern = Pattern.compile(".*start=\"" + ANY_ISO_DATE_CHARACTERS + "\".*");
     private static final Pattern endTimePattern = Pattern.compile(".*end=\"" + ANY_ISO_DATE_CHARACTERS + "\".*");
@@ -38,6 +40,7 @@ public class LogsWithMinimumDurationTimeExtractor implements Callable<Void>
                     .filter(this::hasMinimumDurationTime)
                     .forEach(queue::offer);
         }
+        queue.offer(EXIT_MESSAGE);
         return null;
     }
 

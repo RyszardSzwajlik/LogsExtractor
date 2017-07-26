@@ -12,12 +12,15 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.logging.Logger;
 
 import static java.util.Arrays.asList;
+import static pl.ryszardszwajlik.artigo.logsExtractor.LogsWithMinimumDurationTimeExtractor.EXIT_MESSAGE;
 
 @Component
 public class Application
 {
+    private static final Logger logger = Logger.getLogger(Application.class.getName());
     private final ParametersFactory parametersFactory;
     private final LogsWriter logsWriter;
 
@@ -32,22 +35,28 @@ public class Application
     {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Application.class.getPackage().getName());
         Application application = applicationContext.getBean(Application.class);
-        application.run(args);
+        try
+        {
+            application.run(args);
+        }
+        catch (InterruptedException e)
+        {
+            logger.info("Logs extracting interrupted");
+        }
     }
 
-    private void run(String[] args)
+    private void run(String[] args) throws InterruptedException
     {
         Parameters parameters = parametersFactory.fromArguments(asList(args));
         BlockingQueue<String> queue = new LinkedBlockingQueue<>();
-        ExecutorService produceLogsThread = produceLogs(parameters, queue);
-//        logsWriter.logUntilExecutorWorks(queue, produceLogsThread);
+        produceLogs(parameters, queue);
+        logsWriter.logUntilPoisonPill(queue, EXIT_MESSAGE);
     }
 
-    private ExecutorService produceLogs(Parameters parameters, BlockingQueue<String> queue)
+    private void produceLogs(Parameters parameters, BlockingQueue<String> queue)
     {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(new LogsWithMinimumDurationTimeExtractor(parameters, queue));
         executor.shutdown();
-        return executor;
     }
 }
